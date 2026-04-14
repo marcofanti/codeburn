@@ -281,7 +281,12 @@ async function parseSessionFile(
   seenMsgIds: Set<string>,
   dateRange?: DateRange,
 ): Promise<SessionSummary | null> {
-  const content = await readFile(filePath, 'utf-8')
+  let content: string
+  try {
+    content = await readFile(filePath, 'utf-8')
+  } catch {
+    return null
+  }
   const lines = content.split('\n').filter(l => l.trim())
   const entries: JournalEntry[] = []
 
