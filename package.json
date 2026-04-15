@@ -37,7 +37,11 @@
     "ink": "^7.0.0",
     "react": "^19.2.5"
   },
+  "optionalDependencies": {
+    "better-sqlite3": "^12.0.0"
+  },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
     "@types/react": "^19.2.14",
     "tsup": "^8.4.0",
     "tsx": "^4.19.0",

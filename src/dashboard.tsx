@@ -34,6 +34,13 @@ const PANEL_COLORS = {
   bash: '#F5A05B',
 }
 
+const PROVIDER_COLORS: Record<string, string> = {
+  claude: '#FF8C42',
+  codex: '#5BF5A0',
+  cursor: '#00B4D8',
+  all: '#FF8C42',
+}
+
 const CATEGORY_COLORS: Record<TaskCategory, string> = {
   coding: '#5B9EF5',
   debugging: '#F55B5B',
@@ -406,7 +413,7 @@ function PeriodTabs({ active, providerName, showProvider }: {
         <Box>
           <Text color={DIM}>|  </Text>
           <Text color={ORANGE} bold>[p]</Text>
-          <Text bold> {getProviderDisplayName(providerName)}</Text>
+          <Text bold color={PROVIDER_COLORS[providerName] ?? ORANGE}> {getProviderDisplayName(providerName)}</Text>
         </Box>
       )}
     </Box>

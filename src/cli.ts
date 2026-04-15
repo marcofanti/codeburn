@@ -70,7 +70,7 @@ program
   .command('report', { isDefault: true })
   .description('Interactive usage dashboard')
   .option('-p, --period <period>', 'Starting period: today, week, month, 30days', 'week')
-  .option('--provider <provider>', 'Filter by provider: all, claude, codex', 'all')
+  .option('--provider <provider>', 'Filter by provider: all, claude, codex, cursor', 'all')
   .option('--refresh <seconds>', 'Auto-refresh interval in seconds', parseInt)
   .action(async (opts) => {
     await renderDashboard(toPeriod(opts.period), opts.provider, opts.refresh)
@@ -119,7 +119,7 @@ program
   .command('status')
   .description('Compact status output (today + week + month)')
   .option('--format <format>', 'Output format: terminal, menubar, json', 'terminal')
-  .option('--provider <provider>', 'Filter by provider: all, claude, codex', 'all')
+  .option('--provider <provider>', 'Filter by provider: all, claude, codex, cursor', 'all')
   .action(async (opts) => {
     await loadPricing()
     const pf = opts.provider
@@ -157,7 +157,7 @@ program
 program
   .command('today')
   .description('Today\'s usage dashboard')
-  .option('--provider <provider>', 'Filter by provider: all, claude, codex', 'all')
+  .option('--provider <provider>', 'Filter by provider: all, claude, codex, cursor', 'all')
   .option('--refresh <seconds>', 'Auto-refresh interval in seconds', parseInt)
   .action(async (opts) => {
     await renderDashboard('today', opts.provider, opts.refresh)
@@ -166,7 +166,7 @@ program
 program
   .command('month')
   .description('This month\'s usage dashboard')
-  .option('--provider <provider>', 'Filter by provider: all, claude, codex', 'all')
+  .option('--provider <provider>', 'Filter by provider: all, claude, codex, cursor', 'all')
   .option('--refresh <seconds>', 'Auto-refresh interval in seconds', parseInt)
   .action(async (opts) => {
     await renderDashboard('month', opts.provider, opts.refresh)
@@ -177,7 +177,7 @@ program
   .description('Export usage data to CSV or JSON (includes 1 day, 7 days, 30 days)')
   .option('-f, --format <format>', 'Export format: csv, json', 'csv')
   .option('-o, --output <path>', 'Output file path')
-  .option('--provider <provider>', 'Filter by provider: all, claude, codex', 'all')
+  .option('--provider <provider>', 'Filter by provider: all, claude, codex, cursor', 'all')
   .action(async (opts) => {
     await loadPricing()
     const pf = opts.provider

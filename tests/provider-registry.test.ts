@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { providers } from '../src/providers/index.js'
 
 describe('provider registry', () => {
-  it('has claude and codex providers', () => {
-    expect(providers.map(p => p.name)).toEqual(['claude', 'codex'])
+  it('has all providers registered', () => {
+    expect(providers.map(p => p.name)).toEqual(['claude', 'codex', 'cursor'])
   })
 
   it('claude tool display names are identity', () => {
@@ -31,5 +31,13 @@ describe('provider registry', () => {
     const claude = providers.find(p => p.name === 'claude')!
     expect(claude.modelDisplayName('claude-opus-4-6-20260205')).toBe('Opus 4.6')
     expect(claude.modelDisplayName('claude-sonnet-4-6')).toBe('Sonnet 4.6')
+  })
+
+  it('cursor model display names handle auto mode', () => {
+    const cursor = providers.find(p => p.name === 'cursor')!
+    expect(cursor.modelDisplayName('default')).toBe('Auto (Sonnet est.)')
+    expect(cursor.modelDisplayName('claude-4.5-opus-high-thinking')).toBe('Opus 4.5 (Thinking)')
+    expect(cursor.modelDisplayName('grok-code-fast-1')).toBe('Grok Code Fast')
+    expect(cursor.modelDisplayName('unknown-model')).toBe('unknown-model')
   })
 })
